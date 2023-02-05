@@ -22,3 +22,5 @@ We used the "Support Vector Classifier" machine learning algorithm for creating 
 The model's interface is a web service that takes the user's inputs and implements them in the model to predict heart attacks. We used flask library to connect Python back-end development with the web front-end development. The goal of the interface is to show how the model works, and our motivation behind the model is to create a minimal accessible source to predict heart attacks for smart devices. Here is a screenshot of the interface.
 
 ![interface](https://drive.google.com/uc?export=download&id=1rWOYzI499lMrdBB2LMx4nLlysbn94shL=250x250)
+<img src="https://drive.google.com/uc?export=download&id=1MacTG0k0kSGhPT2IYAKT2ipj_c1gXAbh" width="500" height="500">
+
