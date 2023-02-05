@@ -7,7 +7,7 @@
   <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   
 </head>
 
@@ -16,12 +16,19 @@
 	<h1>Heart Attack Predictor</h1>
 
  
-    <form action="{{ url_for('predict')}}"method="post">
-        <input type="text" name="Age" placeholder="Age" required="required" />
-    	<input type="text" name="Gender" placeholder="Gender" required="required" />
-        <input type="text" name="Systolic Blood Pressure" placeholder="Systolic Blood Pressure" required="required" />
-        <input type="text" name="Maximum Heart Rate" placeholder="Maximum Heart Rate" required="required" />
-		
+    <form action="{{ url_for('predict')}}" method="post">
+        <input type="text" name="Age" placeholder="Age in years" required="required" />
+        <label for="male" class="form-control">
+            <input type="radio" id="male" name="gender" value= 1 class="btn">
+            Male
+        </label>
+        <label for="female" class="form-control">
+            <input type="radio" id="female" name="gender" value= 0 class="btn">
+            Female
+        </label>
+        <input type="text" name="Systolic Blood Pressure" placeholder="Systolic Blood Pressure in mm Hg" required="required" />
+        <input type="text" name="Maximum Heart Rate" placeholder="Maximum Heart Rate in bpm" required="required" />
+
 
         <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
     </form>
@@ -29,6 +36,9 @@
    <br>
    <br>
    {{ prediction_text }}
+   <br>
+    {{data}}
+
 
  </div>
 
