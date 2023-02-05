@@ -1,47 +1,59 @@
 <!DOCTYPE html>
-<html >
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Heart Attck Predictor</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
-<body>
- <div class="login">
-	<h1>Heart Attack Predictor</h1>
-
- 
-    <form action="{{ url_for('predict')}}" method="post">
-        <input type="text" name="Age" placeholder="Age in years" required="required" />
-        <label for="male" class="form-control">
-            <input type="radio" id="male" name="gender" value= 1 class="btn">
-            Male
-        </label>
-        <label for="female" class="form-control">
-            <input type="radio" id="female" name="gender" value= 0 class="btn">
-            Female
-        </label>
-        <input type="text" name="Systolic Blood Pressure" placeholder="Systolic Blood Pressure in mm Hg" required="required" />
-        <input type="text" name="Maximum Heart Rate" placeholder="Maximum Heart Rate in bpm" required="required" />
-
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-
-   <br>
-   <br>
-   {{ prediction_text }}
-   <br>
-    {{data}}
-
-
- </div>
-
-
-</body>
+  <body>
+    </div>    
+    <header class="header">
+      <h1 class="text-center my-5">Heart Disease Predictor</h1>
+    </header>
+    <main>
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <form action="{{ url_for('predict') }}" method="post">
+              <div class="form-group">
+                <label for="age">Age (in years)</label>
+                <input type="number" name="age" id="age" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="sex">Gender</label>
+                <select name="sex" id="sex" class="form-control" required>
+                  <option value="0">Female</option>
+                  <option value="1">Male</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="trtbps">Systolic Blood Pressure (mm Hg)</label>
+                <input type="number" name="trtbps" id="trtbps" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="thalachh">Maximum Heart Rate (bpm)</label>
+                <input type="number" name="thalachh" id="thalachh" class="form-control" required>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Predict</button>
+            </form>
+          </div>
+        </div>
+        {% if prediction_text %}
+          <div class="row justify-content-center">
+            <div class="col-md-6">
+              <h2 class="text-center my-5">{{ prediction_text }}</h2>
+              <p class="text-center">{{ data }}</p>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </main>
+  </body>
 </html>
+
