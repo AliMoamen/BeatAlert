@@ -3,57 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Heart Attack Predictor</title>
+    <title>BeatAlert</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <script>
+        // Save form data in localStorage upon form submission
+        function saveFormData() {
+            const age = document.getElementById('age').value;
+            const sex = document.getElementById('sex').value;
+            const trtbps = document.getElementById('trtbps').value;
+            const thalachh = document.getElementById('thalachh').value;
+
+            // Store each field in localStorage
+            localStorage.setItem('age', age);
+            localStorage.setItem('sex', sex);
+            localStorage.setItem('trtbps', trtbps);
+            localStorage.setItem('thalachh', thalachh);
+        }
+
+        // Retrieve and pre-fill form data from localStorage
+        function loadFormData() {
+            const age = localStorage.getItem('age');
+            const sex = localStorage.getItem('sex');
+            const trtbps = localStorage.getItem('trtbps');
+            const thalachh = localStorage.getItem('thalachh');
+
+            // Set the form values if they exist in localStorage
+            if (age) document.getElementById('age').value = age;
+            if (sex) document.getElementById('sex').value = sex;
+            if (trtbps) document.getElementById('trtbps').value = trtbps;
+            if (thalachh) document.getElementById('thalachh').value = thalachh;
+        }
+
+
+        // Load saved data when the page loads
+        window.onload = function() {
+            loadFormData();
+        };
+    </script>
+
+
 </head>
-  <body>
-    </div>    
+<body>
     <header class="header">
-      <h1 class="text-center my-5">Heart Attack Predictor</h1>
+        <h1 class="text-center my-3">BeatAlert</h1>
     </header>
     <main>
-      <div class="container my-5">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <form action="{{ url_for('predict') }}" method="post">
-              <div class="form-group">
-                <label for="age">Age (in years)</label>
-                <input type="number" name="age" id="age" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="sex">Gender</label>
-                <select name="sex" id="sex" class="form-control" required>
-                  <option value="0">Female</option>
-                  <option value="1">Male</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="trtbps">Systolic Blood Pressure (mm Hg)</label>
-                <input type="number" name="trtbps" id="trtbps" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label for="thalachh">Maximum Heart Rate (bpm)</label>
-                <input type="number" name="thalachh" id="thalachh" class="form-control" required>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">Predict</button>
-            </form>
-          </div>
-        </div>
-        {% if prediction_text %}
-          <div class="row justify-content-center">
-            <div class="col-md-6">
-              <h2 class="text-center my-5">{{ prediction_text }}</h2>
-              <p class="text-center">{{ data }}</p>
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <form action="{{ url_for('predict') }}" method="post" onsubmit="saveFormData()">
+                            <div class="form-group">
+                                <label for="age">Age (in years)</label>
+                                <input type="number" name="age" id="age" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sex">Gender</label>
+                                <select name="sex" id="sex" class="form-control" required>
+                                    <option value="0">Female</option>
+                                    <option value="1">Male</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="trtbps">Systolic Blood Pressure (mm Hg)</label>
+                                <input type="number" name="trtbps" id="trtbps" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="thalachh">Maximum Heart Rate (bpm)</label>
+                                <input type="number" name="thalachh" id="thalachh" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-          </div>
-        {% endif %}
-      </div>
-    </main>
-  </body>
-</html>
 
+            {% if prediction_text %}
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <!-- Add result-high or result-low class based on prediction -->
+                        <h2 class="text-center my-4 {% if 'High' in prediction_text %} result-high {% else %} result-low {% endif %}">
+                            {{ prediction_text }}
+                        </h2>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

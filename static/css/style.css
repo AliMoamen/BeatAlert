@@ -1,45 +1,70 @@
+/* Global Styles */
 body {
-    font-family: 'Arial', serif;
-    color: black;
+  font-family: 'Roboto Slab', serif;
+  color: #333;
 }
 
-
-  .header {
-    text-align: center;
-    margin-top: 50%
-=  }
+/* Header Styles */
+.header {
+  margin-top: 10px;
+  text-align: center;
+}
 
 h1 {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 42px;
+  color: #333;
+  font-weight: 600;
 }
-  
-  label {
-    font-size: 18px;
-  }
-  
-  input,
-  select {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #333;
-  }
-  
-  button {
-    background-color: #333;
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 1rem 2rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  button:hover {
-    background-color: #fff;
-  }
-  
+
+/* Form Styles */
+label {
+  font-size: 18px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.8rem;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+/* Button Styles */
+button {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+/* Card Styles */
+.card {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Result Styles */
+.result-high {
+  color: red;
+  font-weight: bold;
+}
+
+.result-low {
+  color: green;
+  font-weight: bold;
+}
